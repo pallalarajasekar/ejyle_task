@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="application/javascript" src="js/jquery.js"></script>
+    <!--<script type="application/javascript" src="js/underscore.js"></script>-->
+    <script type="application/javascript" src="js/bootstrap.js"></script>
+</head>
+<script>
+    //var us = require('underscore');
+    $(document).ready(function(){
+       // alert("document ready");
+        $("#save").click(function()
+        {
+            console.log("CATEGORYID",$("#cid").val());
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8966/search",
+                data: {
+                    input : parseInt($("#cid").val()),
+
+                },
+                success: function(data){
+                    console.log("SUCCESS :", data);
+
+                   /* $("#dbId").append( "ParentCategoryId : "+data.ParentCategoryId+ "    Name :  "+data.Name+  "Keywords : "+data.Keywords+ data)
+                     $("#dbId").append("<br>")
+*/
+
+                    $("#dbId").append("<table>" +
+                            "<tr>" +
+                            "<th>ParentCategoryId</th>" +
+                            "<th>Name</th>" +
+                            "<th>Keywords</th>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td>"+ data.ParentCategoryId +"</td>" +
+                            "<td>"+ data.Name +"</td>" +
+                            "<td>"+ data.Keywords +"</td>" +
+                            "</tr></table>")
+                    $("#dbId").append("<br>")
+                },
+                error : function(){
+                    console.log("ERROR :", arguments);
+                },
+                dataType: 'json'
+            });
+        })
+        $("#submit").click(function()
+        {
+            console.log("INPUT",$("#cid").val());
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8966/count",
+                data: {
+                    num : parseInt($("#cid").val()),
+
+                },
+                success: function(data){
+                    console.log("SUCCESS :", data);
+
+                    $("#dbId").append("<table>" +
+                            "<tr>" +
+                            "<th>ParentCategoryId</th>" +
+                            "<th>Name</th>" +
+                            "<th>Keywords</th>" +
+                            "</tr>" +
+                            "<tr>" +
+                            "<td>"+ data.ParentCategoryId +"</td>" +
+                            "<td>"+ data.Name +"</td>" +
+                            "<td>"+ data.Keywords +"</td>" +
+                            "</tr></table>")
+                    $("#dbId").append("<br>")
+                },
+                error : function(){
+                    console.log("ERROR :", arguments);
+                },
+                dataType: 'json'
+            });
+        })
+    })
+</script>
+<body>
+CategoryId:<input type="number" id="cid">
+<input type="button" id="save" value="SAVE">
+<input type="button" id="submit" value="SUBMIT">
+<br><hr>
+<div id="dbId"></div>
+</body>

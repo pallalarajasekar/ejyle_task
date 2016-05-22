@@ -1,0 +1,24 @@
+{
+  "name": "ejyle_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pallalarajasekar/ejyle_task.git"
+  },
+  "author": "pallala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pallalarajasekar/ejyle_task/issues"
+  },
+  "homepage": "https://github.com/pallalarajasekar/ejyle_task#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.5",
+    "mongodb": "^2.1.19",
+    "xpressio": "^2.1.0"
+  }
+}
